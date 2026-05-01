@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",
