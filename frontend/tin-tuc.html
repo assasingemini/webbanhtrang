@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tin Tức & Review Bánh Tráng Trộn Cần Thơ</title>
+  <meta name="description" content="Tổng hợp chia sẻ, review đánh giá các loại bánh tráng trộn ngon nhất tại Cần Thơ.">
+  <link rel="icon" href="images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main class="min-h-screen">
+    <div style="background:#A60817" class="pt-32 pb-16 text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium mb-4" style="background:rgba(255,178,0,0.2);border:1px solid #FFB200;color:#FFB200">📝 Tin Tức & Review</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="font-family:var(--font-heading)">Góc Review & Tin Tức <span style="color:#FFB200">Ẩm Thực Mới</span></h1>
+        <p class="text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.8)">Khám phá những bài viết hay nhất về văn hóa ăn vặt Cần Thơ.</p>
+      </div>
+    </div>
+    <div class="bg-gray-50 py-16"><div class="max-w-7xl mx-auto px-4"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="posts-grid"><div class="col-span-full text-center py-20 text-gray-400">Đang tải...</div></div></div></div>
+  </main>
+  <div id="footer"></div><div id="floating-contact"></div><div id="cart-drawer"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/cart.js"></script><script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const posts = await api.get('/api/posts');
+        const el = document.getElementById('posts-grid');
+        if (!posts.length) { el.innerHTML = '<div class="col-span-full py-20 text-center text-gray-500">Đang cập nhật tin tức...</div>'; return; }
+        el.innerHTML = posts.map(p => {
+          const d = new Date(p.publishedAt).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+          return `<a href="bai-viet.html?slug=${p.slug}" class="bg-white rounded-2xl overflow-hidden group hover:-translate-y-1 transition-all" style="box-shadow:0 4px 20px rgba(166,8,23,0.10)"><div class="relative overflow-hidden h-48"><img src="${p.coverImage}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-5"><div class="text-xs text-gray-400 mb-2">${d}</div><h3 class="font-bold text-gray-900 mb-2 line-clamp-2" style="font-family:var(--font-heading)">${p.title}</h3><p class="text-sm text-gray-500 line-clamp-2">${p.excerpt}</p></div></a>`;
+        }).join('');
+      } catch(e) { console.error(e); }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MenuItem {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  imageUrl    String
+  category    String
+  slug        String      @unique
+  isAvailable Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  OrderItem   OrderItem[]
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content        String
+  coverImage     String
+  tags           String[]
+  seoTitle       String?
+  seoDescription String?
+  seoKeyword     String?
+  publishedAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  author    String
+  rating    Int
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id              Int         @id @default(autoincrement())
+  customerName    String
+  customerPhone   String
+  customerAddress String?
+  status          String      @default("PENDING")
+  totalAmount     Float
+  note            String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime
+  OrderItem       OrderItem[]
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  menuItemId Int
+  quantity   Int
+  price      Float
+  MenuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  Order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model LangdingPage {
+  id                  Int      @id @default(1)
+
+  // Hero Section
+  heroTitle           String   @default("Bánh Tráng Trộn Ngon Cần Thơ")
+  heroSubtitle        String   @default("Chua cay đậm đà – mê hoặc từng miếng cắn. Hương vị đặc trưng miền Tây với bò khô, trứng cút, đậu phộng rang và sa tế cay nồng.")
+  heroBgImage         String   @default("https://images.unsplash.com/photo-1660579384185-5d9cc8d5bb69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1600")
+
+  // About Section
+  aboutTitle          String   @default("Hương Vị Đặc Trưng Từ Đất Cần Thơ")
+  aboutDescription1   String   @default("Ra đời từ niềm đam mê ẩm thực đường phố, Bánh Tráng Trộn Ngon Cần Thơ mang đến công thức bí truyền đã được chắt lọc qua nhiều năm kinh nghiệm.")
+  aboutDescription2   String   @default("Mỗi phần bánh tráng trộn là sự kết hợp tinh tế giữa nguyên liệu tươi ngon và gia vị đặc biệt, tạo nên hương vị không nơi nào sánh bằng.")
+  aboutImage          String   @default("https://images.unsplash.com/photo-1689760661329-1e6504082caf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800")
+
+  // Stats
+  statsRating         String   @default("4.9/5")
+  statsDailyCustomers String   @default("500+")
+  statsExperience     String   @default("5 năm")
+  heroPhone           String   @default("0123.456.789")
+  contactAddress      String   @default("123 Đường 30/4, Quận Ninh Kiều, Cần Thơ")
+  contactEmail        String   @default("contact@banhtrangtronngoncantho.vn")
+  contactHours        String   @default("09:00 - 22:00")
+  contactDays         String   @default("Thứ 2 - Chủ Nhật")
+
+  // Social Links
+  facebookUrl         String   @default("#")
+  instagramUrl        String   @default("#")
+  youtubeUrl          String   @default("#")
+
+  updatedAt           DateTime @updatedAt
+}

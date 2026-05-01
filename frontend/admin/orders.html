@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Quản Lý Đơn Hàng</title><link rel="icon" href="../images/logo-small.png"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script><link rel="stylesheet" href="../css/styles.css"></head>
+<body class="min-h-screen bg-gray-100 pt-16">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b"><div class="max-w-7xl mx-auto px-4 flex justify-between h-16 items-center"><a href="index.html" class="font-bold text-xl text-[#A60817]" style="font-family:var(--font-heading)">← Admin</a><button onclick="logout()" class="text-sm px-3 py-1.5 rounded-md text-white bg-gray-800 hover:bg-gray-700">Đăng xuất</button></div></nav>
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8" style="font-family:var(--font-heading)">Đơn hàng</h1>
+    <div class="bg-white rounded-2xl shadow overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200"><thead class="bg-gray-50"><tr><th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mã</th><th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Khách hàng</th><th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">SĐT</th><th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tổng</th><th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Trạng thái</th><th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ngày</th><th class="px-4 py-3"></th></tr></thead>
+      <tbody class="divide-y divide-gray-200" id="orders-table"><tr><td colspan="7" class="px-6 py-12 text-center text-gray-400">Đang tải...</td></tr></tbody></table>
+    </div>
+  </div>
+  <script src="../js/config.js"></script><script src="../js/api.js"></script>
+  <script>
+    lucide.createIcons();
+    async function checkAuth(){try{await api.get('/api/auth/check')}catch{window.location.href='login.html'}}
+    async function logout(){try{await api.post('/api/auth/logout',{})}finally{window.location.href='login.html'}}
+    const statusColors={PENDING:'bg-yellow-100 text-yellow-800',PROCESSING:'bg-blue-100 text-blue-800',SHIPPED:'bg-purple-100 text-purple-800',COMPLETED:'bg-green-100 text-green-800',CANCELLED:'bg-red-100 text-red-800'};
+    const statusLabels={PENDING:'Chờ xử lý',PROCESSING:'Đang xử lý',SHIPPED:'Đang giao',COMPLETED:'Hoàn thành',CANCELLED:'Đã huỷ'};
+    async function updateStatus(id,status){try{await api.patch(`/api/orders/${id}`,{status});loadOrders();}catch(e){alert(e.error||'Lỗi');}}
+    async function deleteOrder(id){if(!confirm('Xoá đơn hàng này?'))return;try{await api.delete(`/api/orders/${id}`);loadOrders();}catch(e){alert(e.error||'Lỗi');}}
+    async function loadOrders(){
+      const orders=await api.get('/api/orders');
+      const el=document.getElementById('orders-table');
+      if(!orders.length){el.innerHTML='<tr><td colspan="7" class="px-6 py-12 text-center text-gray-400">Chưa có đơn hàng</td></tr>';return;}
+      const fmt=v=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(v);
+      el.innerHTML=orders.map(o=>{
+        const d=new Date(o.createdAt).toLocaleDateString('vi-VN');
+        const statusOpts=['PENDING','PROCESSING','SHIPPED','COMPLETED','CANCELLED'].map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${statusLabels[s]}</option>`).join('');
+        return `<tr><td class="px-4 py-4 font-bold text-[#A60817]">#${o.id}</td><td class="px-4 py-4 font-medium text-gray-900">${o.customerName}</td><td class="px-4 py-4 text-gray-500">${o.customerPhone}</td><td class="px-4 py-4 font-bold">${fmt(o.totalAmount)}</td><td class="px-4 py-4"><select onchange="updateStatus(${o.id},this.value)" class="px-2 py-1 rounded-lg text-xs font-medium border ${statusColors[o.status]||''}">${statusOpts}</select></td><td class="px-4 py-4 text-sm text-gray-500">${d}</td><td class="px-4 py-4 text-right"><button onclick="deleteOrder(${o.id})" class="text-red-600 hover:underline text-sm">Xoá</button></td></tr>`;
+      }).join('');
+    }
+    document.addEventListener('DOMContentLoaded',async()=>{await checkAuth();loadOrders();});
+  </script>
+</body>
+</html>

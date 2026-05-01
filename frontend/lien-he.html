@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên Hệ Đặt Bánh Tráng Trộn Cần Thơ</title>
+  <meta name="description" content="Thông tin liên hệ, địa chỉ bản đồ và số điện thoại tiệm bánh tráng trộn ngon nhất Cần Thơ.">
+  <link rel="icon" href="images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main class="min-h-screen bg-gray-50">
+    <div style="background:#A60817" class="pt-32 pb-16 text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium mb-4" style="background:rgba(255,178,0,0.2);border:1px solid #FFB200;color:#FFB200">📞 Liên Hệ</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="font-family:var(--font-heading)">Liên Hệ <span style="color:#FFB200">Với Tiệm</span></h1>
+        <p class="text-lg max-w-2xl mx-auto" style="color:rgba(255,255,255,0.8)">Gọi ngay cho chúng tôi!</p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 py-16" id="contact-content"><div class="text-center py-20 text-gray-400">Đang tải...</div></div>
+  </main>
+  <div id="footer"></div><div id="floating-contact"></div><div id="cart-drawer"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/cart.js"></script><script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const cfg = await api.get('/api/landing-page');
+        const phone = cfg.heroPhone||'0123.456.789', addr = cfg.contactAddress||'123 Đường 30/4, Quận Ninh Kiều, Cần Thơ', email = cfg.contactEmail||'contact@banhtrangtronngoncantho.vn', hours = (cfg.contactDays||'Thứ 2 - Chủ Nhật')+': '+(cfg.contactHours||'09:00 - 22:00');
+        document.getElementById('contact-content').innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white rounded-3xl p-8 md:p-12 border border-gray-100" style="box-shadow:0 8px 40px rgba(166,8,23,0.10)">
+            <div class="flex flex-col justify-center space-y-8">
+              <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:#FFF0F0"><i data-lucide="map-pin" class="w-5 h-5" style="color:#A60817"></i></div><div><h3 class="text-lg font-bold text-gray-900 mb-1" style="font-family:var(--font-heading)">Địa Chỉ Cửa Hàng</h3><p class="text-gray-600">${addr}</p></div></div>
+              <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:#FFF0F0"><i data-lucide="phone" class="w-5 h-5" style="color:#A60817"></i></div><div><h3 class="text-lg font-bold text-gray-900 mb-1" style="font-family:var(--font-heading)">Hotline Đặt Hàng</h3><a href="tel:${phone.replace(/\\D/g,'')}" class="font-extrabold text-3xl hover:opacity-80" style="color:#A60817;font-family:var(--font-heading)">${phone}</a></div></div>
+              <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:#FFF0F0"><i data-lucide="clock" class="w-5 h-5" style="color:#A60817"></i></div><div><h3 class="text-lg font-bold text-gray-900 mb-1" style="font-family:var(--font-heading)">Giờ Hoạt Động</h3><p class="text-gray-600">${hours}</p></div></div>
+              <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:#FFF0F0"><i data-lucide="mail" class="w-5 h-5" style="color:#A60817"></i></div><div><h3 class="text-lg font-bold text-gray-900 mb-1" style="font-family:var(--font-heading)">Email</h3><a href="mailto:${email}" class="text-gray-600 hover:text-[#A60817]">${email}</a></div></div>
+              <div class="pt-4"><a href="tel:${phone.replace(/\\D/g,'')}" class="inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-xl text-white hover:scale-105" style="background:linear-gradient(135deg,#A60817,#FE5200)"><i data-lucide="phone" class="w-5 h-5"></i> Gọi Ship Ngay</a></div>
+            </div>
+            <div class="relative aspect-square md:aspect-auto rounded-2xl overflow-hidden bg-gray-200 shadow-inner min-h-64">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15715.367060596207!2d105.76019574452077!3d10.030511874465457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0883d2192b0f1%3A0x4c90a391d232ccce!2zTmluaCBLaeG7gXUsIEPhuqduIFRoxqEsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" class="absolute inset-0"></iframe>
+            </div>
+          </div>`;
+        lucide.createIcons();
+      } catch(e) { console.error(e); }
+    });
+  </script>
+</body>
+</html>

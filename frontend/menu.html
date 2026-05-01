@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thực Đơn Bánh Tráng Trộn Ngon Cần Thơ</title>
+  <meta name="description" content="Khám phá hơn 20 loại bánh tráng trộn tại Cần Thơ. Giá chỉ từ 15k.">
+  <link rel="icon" href="images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main class="bg-gray-50 min-h-screen">
+    <div style="background:#A60817" class="pt-32 pb-16 text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium mb-4" style="background:rgba(255,178,0,0.2);border:1px solid #FFB200;color:#FFB200">🍽️ Thực Đơn</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4" style="font-family:var(--font-heading)">Thực Đơn Đa Dạng</h1>
+        <p class="text-xl max-w-2xl mx-auto" style="color:rgba(255,255,255,0.8)">Giao hàng siêu tốc khu vực Cần Thơ!</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-16"><div class="flex flex-col gap-16" id="menu-categories"><div class="text-center py-20 text-gray-400">Đang tải...</div></div></div>
+    <div class="py-12 text-center"><a href="lien-he.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white hover:scale-105" style="background:linear-gradient(135deg,#A60817,#FE5200)">Đặt Hàng Ngay</a></div>
+  </main>
+  <div id="footer"></div><div id="floating-contact"></div><div id="cart-drawer"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/cart.js"></script><script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const products = await api.get('/api/products');
+        const el = document.getElementById('menu-categories');
+        if (!products.length) { el.innerHTML = '<p class="text-center py-20 text-gray-500">Đang cập nhật...</p>'; return; }
+        const cats = {};
+        products.forEach(p => { if (!cats[p.category]) cats[p.category] = []; cats[p.category].push(p); });
+        el.innerHTML = Object.entries(cats).map(([cat, items]) => `
+          <div><h2 class="text-3xl font-bold text-gray-900 pb-2 border-b-4 mb-8 inline-block" style="font-family:var(--font-heading);border-color:#A60817">${cat}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">${items.map(p => {
+            const price = Cart.formatPrice(p.price);
+            return `<div class="rounded-2xl overflow-hidden bg-white group transition-all duration-300 hover:-translate-y-1" style="box-shadow:0 4px 20px rgba(166,8,23,0.10)"><div class="relative overflow-hidden h-52"><img src="${p.imageUrl}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-xs font-semibold" style="background:#A60817">${price}</div></div><div class="p-4"><h3 class="font-semibold text-gray-800 mb-1 truncate" style="font-family:var(--font-heading)">${p.name}</h3><p class="text-sm text-gray-500 mb-3 line-clamp-2">${p.description}</p><div class="flex items-center justify-between"><span class="font-bold text-lg" style="color:#A60817">${price}</span><a href="product.html?slug=${p.slug}" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white" style="background:linear-gradient(135deg,#A60817,#FE5200)">Chi Tiết</a></div></div></div>`;
+          }).join('')}</div></div>`).join('');
+        lucide.createIcons();
+      } catch(e) { console.error(e); }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "temp_proj",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@next/third-parties": "^16.2.2",
+    "@prisma/client": "^6.4.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tiptap/extension-font-family": "^3.20.4",
+    "@tiptap/extension-image": "^3.20.4",
+    "@tiptap/extension-link": "^3.20.4",
+    "@tiptap/extension-placeholder": "^3.20.4",
+    "@tiptap/extension-text-align": "^3.20.4",
+    "@tiptap/extension-text-style": "^3.20.4",
+    "@tiptap/extension-underline": "^3.20.4",
+    "@tiptap/pm": "^3.20.4",
+    "@tiptap/react": "^3.20.4",
+    "@tiptap/starter-kit": "^3.20.4",
+    "cloudinary": "^2.9.0",
+    "lucide-react": "^0.577.0",
+    "next": "^15.5.12",
+    "next-cloudinary": "^6.17.5",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.12",
+    "prisma": "^6.4.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

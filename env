@@ -1,0 +1,7 @@
+# Database URL from Neon
+DATABASE_URL="postgresql://neondb_owner:npg_VawKc8OT7PIy@ep-little-wind-a1dtl3uu-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+
+# Cloudinary
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="dpp9pqkou"
+CLOUDINARY_API_KEY="133451778645642"
+CLOUDINARY_API_SECRET="a9f3c7d1e4b8k2m6x0q5z7p1r4t9s8"

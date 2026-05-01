@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Sản Phẩm</title>
+  <link rel="icon" href="images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main class="min-h-screen bg-white pb-20">
+    <div class="bg-gray-50 border-b pt-24 pb-4"><div class="max-w-7xl mx-auto px-4"><nav class="flex items-center gap-2 text-sm text-gray-500 font-medium"><a href="index.html" class="hover:text-[#A60817]">Trang Chủ</a><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i><a href="menu.html" class="hover:text-[#A60817]">Thực Đơn</a><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i><span id="breadcrumb-name" class="text-gray-900">...</span></nav></div></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12" id="product-content"><div class="text-center py-20 text-gray-400">Đang tải...</div></div>
+  </main>
+  <div id="footer"></div><div id="floating-contact"></div><div id="cart-drawer"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/cart.js"></script><script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slug = new URLSearchParams(window.location.search).get('slug');
+      if (!slug) { document.getElementById('product-content').innerHTML = '<p class="text-center py-20">Không tìm thấy sản phẩm.</p>'; return; }
+      try {
+        const { product: p, related } = await api.get(`/api/products/${slug}`);
+        document.title = `${p.name} | Bánh Tráng Trộn Ngon Cần Thơ`;
+        document.getElementById('breadcrumb-name').textContent = p.name;
+        const price = Cart.formatPrice(p.price);
+        document.getElementById('product-content').innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div class="relative aspect-square rounded-3xl overflow-hidden shadow-2xl group"><img src="${p.imageUrl}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"><div class="absolute top-6 left-6"><div class="bg-[#A60817] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">Nổi bật</div></div></div>
+            <div class="flex flex-col">
+              <div class="mb-6">
+                <div class="flex items-center gap-2 text-sm mb-2 uppercase tracking-wider" style="color:#FE5200"><i data-lucide="star" class="w-4 h-4"></i><span>${p.category}</span></div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4" style="font-family:var(--font-heading)">${p.name}</h1>
+                <div class="text-3xl font-black mb-6" style="color:#A60817">${price}</div>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8 border-l-4 pl-6 py-2 italic bg-gray-50 rounded-r-lg" style="border-color:#FFB200">"${p.description}"</p>
+              </div>
+              <div class="flex flex-col gap-4 mb-8">
+                <div class="flex items-center gap-4">
+                  <div class="flex items-center bg-gray-100 rounded-2xl p-1 border border-gray-200">
+                    <button onclick="changeQty(-1)" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white"><i data-lucide="minus" class="w-4 h-4"></i></button>
+                    <span id="qty" class="w-12 text-center font-bold text-lg">1</span>
+                    <button onclick="changeQty(1)" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white"><i data-lucide="plus" class="w-4 h-4"></i></button>
+                  </div>
+                  <button onclick="addProduct()" class="flex-1 flex items-center justify-center gap-3 bg-[#A60817] hover:bg-[#8A2F2C] text-white py-4 px-8 rounded-2xl font-bold transition-all shadow-lg active:scale-[0.98]"><i data-lucide="shopping-cart" class="w-5 h-5"></i> Thêm vào giỏ</button>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border"><i data-lucide="shield-check" class="w-6 h-6 text-green-500"></i><span class="text-sm font-medium text-gray-700">Nguyên liệu sạch 100%</span></div>
+                <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border"><i data-lucide="clock" class="w-6 h-6 text-blue-500"></i><span class="text-sm font-medium text-gray-700">Giao hàng siêu tốc</span></div>
+              </div>
+            </div>
+          </div>
+          ${related.length > 0 ? `<div class="mt-24"><div class="flex items-center justify-between mb-10"><div><h2 class="text-3xl font-bold text-gray-900" style="font-family:var(--font-heading)">Có thể bạn cũng thích</h2><div class="h-1.5 w-20 bg-[#A60817] mt-2 rounded-full"></div></div><a href="menu.html" class="text-[#A60817] font-semibold flex items-center gap-1">Xem tất cả</a></div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${related.map(r => {const rp=Cart.formatPrice(r.price);return `<div class="rounded-2xl overflow-hidden bg-white group hover:-translate-y-1 transition-all" style="box-shadow:0 4px 20px rgba(166,8,23,0.10)"><div class="relative overflow-hidden h-52"><img src="${r.imageUrl}" alt="${r.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-xs font-semibold" style="background:#A60817">${rp}</div></div><div class="p-4"><h3 class="font-semibold text-gray-800 mb-1 truncate" style="font-family:var(--font-heading)">${r.name}</h3><p class="text-sm text-gray-500 mb-3 line-clamp-2">${r.description}</p><div class="flex items-center justify-between"><span class="font-bold text-lg" style="color:#A60817">${rp}</span><a href="product.html?slug=${r.slug}" class="px-4 py-2 rounded-full text-sm font-medium text-white" style="background:linear-gradient(135deg,#A60817,#FE5200)">Chi Tiết</a></div></div></div>`;}).join('')}</div></div>` : ''}
+          <div class="mt-16 text-center"><a href="menu.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-[#A60817] font-medium py-2 px-4 rounded-full border border-gray-200 hover:border-[#A60817]"><i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại thực đơn</a></div>`;
+        window._currentProduct = p;
+        lucide.createIcons();
+      } catch(e) { document.getElementById('product-content').innerHTML = '<p class="text-center py-20 text-gray-500">Không tìm thấy sản phẩm.</p>'; }
+    });
+
+    function changeQty(d) { const el=document.getElementById('qty'); let v=parseInt(el.textContent)+d; el.textContent=Math.max(1,Math.min(99,v)); }
+    function addProduct() {
+      const p=window._currentProduct; if(!p) return;
+      Cart.addItem({id:p.id,name:p.name,price:p.price,imageUrl:p.imageUrl,slug:p.slug}, parseInt(document.getElementById('qty').textContent));
+      showToast('Đã thêm vào giỏ hàng!');
+    }
+  </script>
+</body>
+</html>

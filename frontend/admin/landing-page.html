@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cấu Hình Trang Chủ</title><link rel="icon" href="../images/logo-small.png"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script><link rel="stylesheet" href="../css/styles.css"></head>
+<body class="min-h-screen bg-gray-100 pt-16">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b"><div class="max-w-7xl mx-auto px-4 flex justify-between h-16 items-center"><a href="index.html" class="font-bold text-xl text-[#A60817]" style="font-family:var(--font-heading)">← Admin</a><button onclick="logout()" class="text-sm px-3 py-1.5 rounded-md text-white bg-gray-800 hover:bg-gray-700">Đăng xuất</button></div></nav>
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8" style="font-family:var(--font-heading)">Cấu hình Landing Page</h1>
+    <form id="lp-form" class="bg-white rounded-2xl shadow p-8 space-y-6">
+      <fieldset class="space-y-4 border rounded-xl p-4"><legend class="font-bold text-gray-700 px-2">🔥 Hero Section</legend>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Tiêu đề</label><input name="heroTitle" class="w-full px-4 py-2.5 rounded-lg border outline-none focus:ring-2 focus:ring-[#FE5200]"></div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Phụ đề</label><textarea name="heroSubtitle" rows="2" class="w-full px-4 py-2.5 rounded-lg border outline-none resize-none"></textarea></div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">URL ảnh nền</label><input name="heroBgImage" class="w-full px-4 py-2.5 rounded-lg border outline-none"></div>
+      </fieldset>
+      <fieldset class="space-y-4 border rounded-xl p-4"><legend class="font-bold text-gray-700 px-2">🏆 Về Chúng Tôi</legend>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Tiêu đề</label><input name="aboutTitle" class="w-full px-4 py-2.5 rounded-lg border outline-none"></div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Mô tả 1</label><textarea name="aboutDescription1" rows="2" class="w-full px-4 py-2.5 rounded-lg border outline-none resize-none"></textarea></div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Mô tả 2</label><textarea name="aboutDescription2" rows="2" class="w-full px-4 py-2.5 rounded-lg border outline-none resize-none"></textarea></div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1">URL ảnh About</label><input name="aboutImage" class="w-full px-4 py-2.5 rounded-lg border outline-none"></div>
+      </fieldset>
+      <fieldset class="space-y-4 border rounded-xl p-4"><legend class="font-bold text-gray-700 px-2">📊 Thống kê</legend>
+        <div class="grid grid-cols-3 gap-4">
+          <div><label class="block text-sm text-gray-600 mb-1">Đánh giá</label><input name="statsRating" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+          <div><label class="block text-sm text-gray-600 mb-1">Khách/ngày</label><input name="statsDailyCustomers" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+          <div><label class="block text-sm text-gray-600 mb-1">Kinh nghiệm</label><input name="statsExperience" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+        </div>
+      </fieldset>
+      <fieldset class="space-y-4 border rounded-xl p-4"><legend class="font-bold text-gray-700 px-2">📞 Liên hệ</legend>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm text-gray-600 mb-1">SĐT</label><input name="heroPhone" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+          <div><label class="block text-sm text-gray-600 mb-1">Email</label><input name="contactEmail" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+        </div>
+        <div><label class="block text-sm text-gray-600 mb-1">Địa chỉ</label><input name="contactAddress" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm text-gray-600 mb-1">Giờ mở cửa</label><input name="contactHours" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+          <div><label class="block text-sm text-gray-600 mb-1">Ngày mở cửa</label><input name="contactDays" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+        </div>
+      </fieldset>
+      <fieldset class="space-y-4 border rounded-xl p-4"><legend class="font-bold text-gray-700 px-2">🔗 Mạng xã hội</legend>
+        <div><label class="block text-sm text-gray-600 mb-1">Facebook URL</label><input name="facebookUrl" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+        <div><label class="block text-sm text-gray-600 mb-1">Instagram URL</label><input name="instagramUrl" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+        <div><label class="block text-sm text-gray-600 mb-1">YouTube URL</label><input name="youtubeUrl" class="w-full px-3 py-2 rounded-lg border outline-none"></div>
+      </fieldset>
+      <div id="form-msg" class="p-3 rounded-xl text-sm font-medium hidden"></div>
+      <button type="submit" class="w-full py-3.5 text-white rounded-xl font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all" style="background:linear-gradient(135deg,#A60817,#FE5200)">Lưu cấu hình</button>
+    </form>
+  </div>
+  <script src="../js/config.js"></script><script src="../js/api.js"></script>
+  <script>
+    lucide.createIcons();
+    async function checkAuth(){try{await api.get('/api/auth/check')}catch{window.location.href='login.html'}}
+    async function logout(){try{await api.post('/api/auth/logout',{})}finally{window.location.href='login.html'}}
+    const fields=['heroTitle','heroSubtitle','heroBgImage','aboutTitle','aboutDescription1','aboutDescription2','aboutImage','statsRating','statsDailyCustomers','statsExperience','heroPhone','contactAddress','contactEmail','contactHours','contactDays','facebookUrl','instagramUrl','youtubeUrl'];
+    document.addEventListener('DOMContentLoaded',async()=>{
+      await checkAuth();
+      try{
+        const cfg=await api.get('/api/landing-page');
+        const f=document.getElementById('lp-form');
+        fields.forEach(k=>{if(f[k]&&cfg[k])f[k].value=cfg[k];});
+      }catch(e){console.error(e);}
+    });
+    document.getElementById('lp-form').addEventListener('submit',async(e)=>{
+      e.preventDefault();
+      const f=e.target,msgEl=document.getElementById('form-msg');
+      const data={};fields.forEach(k=>data[k]=f[k].value);
+      try{
+        await api.put('/api/landing-page',data);
+        msgEl.className='p-3 rounded-xl text-sm font-medium bg-green-50 border border-green-200 text-green-700';
+        msgEl.textContent='Đã lưu thành công!';msgEl.classList.remove('hidden');
+        setTimeout(()=>msgEl.classList.add('hidden'),3000);
+      }catch(err){
+        msgEl.className='p-3 rounded-xl text-sm font-medium bg-red-50 border border-red-200 text-red-600';
+        msgEl.textContent=err.error||'Lỗi';msgEl.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

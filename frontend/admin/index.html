@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="icon" href="../images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="min-h-screen bg-gray-100 pt-16">
+  <!-- Admin Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between h-16">
+      <div class="flex items-center"><a href="../index.html" class="font-bold text-xl text-[#A60817]" style="font-family:var(--font-heading)">Admin Panel</a></div>
+      <div class="flex items-center"><span class="text-gray-700 mr-4 text-sm font-medium">admin@banhtrang.vn</span><button onclick="logout()" class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700"><i data-lucide="log-out" class="w-4 h-4 mr-2"></i>Đăng xuất</button></div>
+    </div></div>
+  </nav>
+
+  <div class="py-10"><main><div class="max-w-7xl mx-auto sm:px-6 lg:px-8"><div class="px-4 py-8 sm:px-0">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8" style="font-family:var(--font-heading)">Tổng quan Dashboard</h1>
+    
+    <!-- Stats -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+      <div class="bg-white shadow rounded-lg border border-gray-100 p-6"><div class="flex items-center"><div class="bg-blue-100 rounded-md p-3"><i data-lucide="shopping-cart" class="w-6 h-6 text-blue-600"></i></div><div class="ml-5"><dt class="text-sm font-medium text-gray-500">Tổng đơn hàng</dt><dd class="text-3xl font-semibold text-gray-900" id="stat-orders">–</dd></div></div></div>
+      <div class="bg-white shadow rounded-lg border border-gray-100 p-6"><div class="flex items-center"><div class="bg-green-100 rounded-md p-3"><i data-lucide="users" class="w-6 h-6 text-green-600"></i></div><div class="ml-5"><dt class="text-sm font-medium text-gray-500">Khách hàng</dt><dd class="text-3xl font-semibold text-gray-900" id="stat-customers">–</dd></div></div></div>
+      <div class="bg-white shadow rounded-lg border border-gray-100 p-6"><div class="flex items-center"><div class="bg-orange-100 rounded-md p-3"><i data-lucide="file-text" class="w-6 h-6 text-orange-600"></i></div><div class="ml-5"><dt class="text-sm font-medium text-gray-500">Bài viết</dt><dd class="text-3xl font-semibold text-gray-900" id="stat-posts">–</dd></div></div></div>
+    </div>
+
+    <!-- Menu Grid -->
+    <h2 class="text-xl font-bold text-gray-900 mb-4" style="font-family:var(--font-heading)">Quản lý</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="products.html" class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition-all group"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl flex items-center justify-center bg-red-100"><i data-lucide="package" class="w-6 h-6 text-red-600"></i></div><div><h3 class="font-bold text-gray-900">Sản phẩm</h3><p class="text-sm text-gray-500">Quản lý thực đơn</p></div></div></a>
+      <a href="posts.html" class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition-all group"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-100"><i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i></div><div><h3 class="font-bold text-gray-900">Bài viết</h3><p class="text-sm text-gray-500">Quản lý blog</p></div></div></a>
+      <a href="orders.html" class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition-all group"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl flex items-center justify-center bg-green-100"><i data-lucide="shopping-bag" class="w-6 h-6 text-green-600"></i></div><div><h3 class="font-bold text-gray-900">Đơn hàng</h3><p class="text-sm text-gray-500">Quản lý đơn hàng</p></div></div></a>
+      <a href="customers.html" class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition-all group"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-100"><i data-lucide="users" class="w-6 h-6 text-purple-600"></i></div><div><h3 class="font-bold text-gray-900">Khách hàng</h3><p class="text-sm text-gray-500">Danh sách khách</p></div></div></a>
+      <a href="landing-page.html" class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition-all group"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl flex items-center justify-center bg-yellow-100"><i data-lucide="layout" class="w-6 h-6 text-yellow-600"></i></div><div><h3 class="font-bold text-gray-900">Trang chủ</h3><p class="text-sm text-gray-500">Cấu hình Landing Page</p></div></div></a>
+    </div>
+  </div></div></main></div>
+
+  <script src="../js/config.js"></script><script src="../js/api.js"></script>
+  <script>
+    lucide.createIcons();
+    async function checkAuth() { try { await api.get('/api/auth/check'); } catch { window.location.href = 'login.html'; } }
+    async function logout() { try { await api.post('/api/auth/logout', {}); } finally { window.location.href = 'login.html'; } }
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuth();
+      try {
+        const stats = await api.get('/api/dashboard/stats');
+        document.getElementById('stat-orders').textContent = stats.orderCount;
+        document.getElementById('stat-customers').textContent = stats.customerCount;
+        document.getElementById('stat-posts').textContent = stats.postCount;
+      } catch(e) { console.error(e); }
+    });
+  </script>
+</body>
+</html>

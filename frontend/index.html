@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bánh Tráng Trộn Ngon Cần Thơ | Ship Tận Nơi Đỉnh Nhất</title>
+  <meta name="description" content="Thưởng thức bánh tráng trộn chuẩn vị ngon nhất tại Cần Thơ. Menu đa dạng, gia vị đậm đà, nhận ship hàng tận nơi nhanh chóng trong khu vực Ninh Kiều.">
+  <link rel="icon" href="images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero-section" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img id="hero-bg" src="https://images.unsplash.com/photo-1660579384185-5d9cc8d5bb69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1600" alt="Bánh tráng trộn ngon Cần Thơ" class="w-full h-full object-cover">
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(166,8,23,0.88) 0%,rgba(254,82,0,0.70) 50%,rgba(0,0,0,0.4) 100%)"></div>
+      </div>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm mb-6" style="background:rgba(255,178,0,0.2);border:1px solid #FFB200;color:#FFB200">
+            <i data-lucide="flame" class="w-3.5 h-3.5"></i> Đặc Sản Cần Thơ Chính Hiệu
+          </div>
+          <h1 id="hero-title" class="text-white mb-6" style="font-family:var(--font-heading);font-size:clamp(2.5rem,6vw,4.2rem);font-weight:900;line-height:1.3;text-shadow:0 2px 20px rgba(0,0,0,0.3)">Bánh Tráng Trộn Ngon Cần Thơ</h1>
+          <p id="hero-subtitle" class="text-lg mb-8 leading-relaxed" style="color:rgba(255,255,255,0.8)">Chua cay đậm đà – mê hoặc từng miếng cắn.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="menu.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all hover:scale-105 hover:shadow-lg" style="background:linear-gradient(135deg,#FFB200,#FE5200)">
+              Xem Thực Đơn <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+            <a href="lien-he.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all hover:bg-white/10" style="border:2px solid rgba(255,255,255,0.5)">
+              Tìm Đường Đến Tiệm
+            </a>
+          </div>
+          <div class="flex flex-wrap gap-6 mt-10" id="hero-stats">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:rgba(255,178,0,0.2)"><i data-lucide="star" class="w-4 h-4" style="color:#FFB200"></i></div>
+              <div><div class="font-bold text-white" style="font-family:var(--font-heading)" id="stat-rating">4.9/5</div><div class="text-xs" style="color:rgba(255,255,255,0.6)">Đánh giá</div></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:rgba(255,178,0,0.2)"><i data-lucide="award" class="w-4 h-4" style="color:#FFB200"></i></div>
+              <div><div class="font-bold text-white" style="font-family:var(--font-heading)" id="stat-customers">500+</div><div class="text-xs" style="color:rgba(255,255,255,0.6)">Khách/ngày</div></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:rgba(255,178,0,0.2)"><i data-lucide="clock" class="w-4 h-4" style="color:#FFB200"></i></div>
+              <div><div class="font-bold text-white" style="font-family:var(--font-heading)" id="stat-experience">5 năm</div><div class="text-xs" style="color:rgba(255,255,255,0.6)">Kinh nghiệm</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <div class="w-6 h-10 rounded-full flex items-start justify-center pt-2" style="border:2px solid rgba(255,255,255,0.5)">
+          <div class="w-1 h-2 rounded-full" style="background:rgba(255,255,255,0.7)"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features bar -->
+    <div style="background:#A60817" class="py-4">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white text-sm">
+          <div class="py-1">🌶️ Sa tế cay đặc biệt</div>
+          <div class="py-1">🥚 Trứng cút tươi ngon</div>
+          <div class="py-1">🥩 Bò khô thượng hạng</div>
+          <div class="py-1">🥜 Đậu phộng rang giòn</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Products -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium mb-3" style="background:#FFF0F0;color:#A60817">⭐ Bán Chạy Nhất</div>
+        <h2 class="text-gray-900 mb-3" style="font-family:var(--font-heading);font-size:2rem;font-weight:700">Món Ngon Bán Chạy Nhất</h2>
+        <p class="text-gray-500 max-w-md mx-auto">Những bịch bánh tráng làm nên tên tuổi của chúng tôi tại Ninh Kiều, Cần Thơ.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="featured-products">
+        <div class="col-span-full py-12 text-center text-gray-400 font-medium bg-white rounded-2xl border border-dashed">Đang tải...</div>
+      </div>
+    </section>
+
+    <!-- Banner CTA -->
+    <section class="py-12" style="background:linear-gradient(135deg,#8A2F2C 0%,#A60817 50%,#FE5200 100%)">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center text-white">
+        <h2 class="mb-3" style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700">Thực Đơn Đầy Đủ Hơn 10 Món</h2>
+        <p class="mb-6" style="color:rgba(255,255,255,0.8)">Từ bánh tráng trộn cổ điển đến các biến thể sáng tạo độc đáo</p>
+        <a href="menu.html" class="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all hover:scale-105" style="background:#FFB200;color:#A60817">
+          Xem Tất Cả Sản Phẩm <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-12 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="rounded-3xl overflow-hidden grid md:grid-cols-2" style="background:#FFF8F0">
+          <div class="p-10 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium mb-4 self-start" style="background:#FFF0F0;color:#A60817">🏆 Về Chúng Tôi</div>
+            <h2 id="about-title" class="text-gray-900 mb-4" style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700">Hương Vị Đặc Trưng Từ Đất Cần Thơ</h2>
+            <p id="about-desc1" class="text-gray-600 leading-relaxed mb-4">Ra đời từ niềm đam mê ẩm thực đường phố...</p>
+            <p id="about-desc2" class="text-gray-600 leading-relaxed">Mỗi phần bánh tráng trộn là sự kết hợp tinh tế...</p>
+          </div>
+          <div class="relative h-72 md:h-auto">
+            <img id="about-image" src="https://images.unsplash.com/photo-1689760661329-1e6504082caf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800" alt="Về chúng tôi" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm font-medium mb-3" style="background:#FFF0F0;color:#A60817">📝 Tin Tức & Chia Sẻ</div>
+          <h2 class="text-gray-900" style="font-family:var(--font-heading);font-size:2rem;font-weight:700">Bài Viết Mới Nhất</h2>
+        </div>
+        <a href="tin-tuc.html" class="flex items-center gap-1 text-sm font-medium transition-all hover:gap-2" style="color:#A60817">
+          Xem Tất Cả <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="latest-posts">
+        <div class="col-span-full py-12 text-center text-gray-400 font-medium bg-white rounded-2xl border border-dashed">Đang tải...</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <div id="floating-contact"></div>
+  <div id="cart-drawer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    function productCardHTML(p) {
+      const price = new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(p.price);
+      return `
+        <div class="rounded-2xl overflow-hidden bg-white group transition-all duration-300 hover:-translate-y-1" style="box-shadow:0 4px 20px rgba(166,8,23,0.10)">
+          <div class="relative overflow-hidden h-52">
+            <img src="${p.imageUrl}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-xs font-semibold" style="background:#A60817">${price}</div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-gray-800 mb-1 truncate" style="font-family:var(--font-heading)">${p.name}</h3>
+            <p class="text-sm text-gray-500 mb-3 line-clamp-2">${p.description}</p>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-lg" style="color:#A60817;font-family:var(--font-heading)">${price}</span>
+              <a href="product.html?slug=${p.slug}" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white transition-all hover:opacity-90" style="background:linear-gradient(135deg,#A60817,#FE5200)">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Chi Tiết
+              </a>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function blogCardHTML(post) {
+      const date = new Date(post.publishedAt).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+      return `
+        <a href="bai-viet.html?slug=${post.slug}" class="bg-white rounded-2xl overflow-hidden group transition-all duration-300 hover:-translate-y-1" style="box-shadow:0 4px 20px rgba(166,8,23,0.10)">
+          <div class="relative overflow-hidden h-48">
+            <img src="${post.coverImage}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <div class="text-xs text-gray-400 mb-2">${date}</div>
+            <h3 class="font-bold text-gray-900 mb-2 line-clamp-2" style="font-family:var(--font-heading)">${post.title}</h3>
+            <p class="text-sm text-gray-500 line-clamp-2">${post.excerpt}</p>
+          </div>
+        </a>`;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const [products, posts, lp] = await Promise.all([
+          api.get('/api/products?limit=4'),
+          api.get('/api/posts?limit=3'),
+          api.get('/api/landing-page'),
+        ]);
+
+        // Landing page config
+        if (lp.heroTitle) document.getElementById('hero-title').textContent = lp.heroTitle;
+        if (lp.heroSubtitle) document.getElementById('hero-subtitle').textContent = lp.heroSubtitle;
+        if (lp.heroBgImage) document.getElementById('hero-bg').src = lp.heroBgImage;
+        if (lp.aboutTitle) document.getElementById('about-title').textContent = lp.aboutTitle;
+        if (lp.aboutDescription1) document.getElementById('about-desc1').textContent = lp.aboutDescription1;
+        if (lp.aboutDescription2) document.getElementById('about-desc2').textContent = lp.aboutDescription2;
+        if (lp.aboutImage) document.getElementById('about-image').src = lp.aboutImage;
+        if (lp.statsRating) document.getElementById('stat-rating').textContent = lp.statsRating;
+        if (lp.statsDailyCustomers) document.getElementById('stat-customers').textContent = lp.statsDailyCustomers;
+        if (lp.statsExperience) document.getElementById('stat-experience').textContent = lp.statsExperience;
+
+        // Products
+        const prodContainer = document.getElementById('featured-products');
+        if (products.length > 0) {
+          prodContainer.innerHTML = products.map(productCardHTML).join('');
+        } else {
+          prodContainer.innerHTML = '<div class="col-span-full py-12 text-center text-gray-400 font-medium bg-white rounded-2xl border border-dashed">Đang cập nhật sản phẩm...</div>';
+        }
+
+        // Posts
+        const postContainer = document.getElementById('latest-posts');
+        if (posts.length > 0) {
+          postContainer.innerHTML = posts.map(blogCardHTML).join('');
+        } else {
+          postContainer.innerHTML = '<div class="col-span-full py-12 text-center text-gray-400 font-medium bg-white rounded-2xl border border-dashed">Đang cập nhật tin tức...</div>';
+        }
+
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Error loading homepage:', err);
+      }
+    });
+  </script>
+</body>
+</html>

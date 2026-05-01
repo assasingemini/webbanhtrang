@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài Viết</title>
+  <link rel="icon" href="images/logo-small.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main class="min-h-screen bg-gray-50">
+    <div class="bg-gray-50 border-b pt-24 pb-4"><div class="max-w-4xl mx-auto px-4"><nav class="flex items-center gap-2 text-sm text-gray-500"><a href="index.html" class="hover:text-[#A60817]">Trang Chủ</a><span>›</span><a href="tin-tuc.html" class="hover:text-[#A60817]">Tin Tức</a><span>›</span><span id="breadcrumb" class="text-gray-900">...</span></nav></div></div>
+    <div class="max-w-4xl mx-auto px-4 py-12" id="post-content"><div class="text-center py-20 text-gray-400">Đang tải...</div></div>
+  </main>
+  <div id="footer"></div><div id="floating-contact"></div><div id="cart-drawer"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/cart.js"></script><script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slug = new URLSearchParams(window.location.search).get('slug');
+      if (!slug) { document.getElementById('post-content').innerHTML = '<p class="text-center py-20">Không tìm thấy bài viết.</p>'; return; }
+      try {
+        const post = await api.get(`/api/posts/${slug}`);
+        document.title = `${post.title} | Bánh Tráng Trộn Ngon Cần Thơ`;
+        document.getElementById('breadcrumb').textContent = post.title;
+        const date = new Date(post.publishedAt).toLocaleDateString('vi-VN',{day:'2-digit',month:'long',year:'numeric'});
+        document.getElementById('post-content').innerHTML = `
+          <article class="bg-white rounded-3xl shadow-lg overflow-hidden">
+            <div class="relative h-64 md:h-96"><img src="${post.coverImage}" alt="${post.title}" class="w-full h-full object-cover"></div>
+            <div class="p-8 md:p-12">
+              <div class="flex flex-wrap gap-2 mb-4">${(post.tags||[]).map(t => `<span class="px-3 py-1 rounded-full text-xs font-medium" style="background:#FFF0F0;color:#A60817">${t}</span>`).join('')}</div>
+              <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4" style="font-family:var(--font-heading)">${post.title}</h1>
+              <div class="text-sm text-gray-400 mb-8">${date}</div>
+              <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">${post.content}</div>
+            </div>
+          </article>
+          <div class="mt-8 text-center"><a href="tin-tuc.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-[#A60817] font-medium py-2 px-4 rounded-full border border-gray-200 hover:border-[#A60817]"><i data-lucide="arrow-left" class="w-4 h-4"></i> Quay lại tin tức</a></div>`;
+        lucide.createIcons();
+      } catch(e) { document.getElementById('post-content').innerHTML = '<p class="text-center py-20 text-gray-500">Không tìm thấy bài viết.</p>'; }
+    });
+  </script>
+</body>
+</html>
